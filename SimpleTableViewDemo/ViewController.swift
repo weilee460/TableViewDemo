@@ -34,7 +34,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var cell = tableView.dequeueReusableCellWithIdentifier(ConstansForTableView.SimpleTableIdentifier)
         if cell == nil
         {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
+            //cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
+            
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
+            
+            //cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
+            
+            //cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
         }
         
         //Add image to table view cell
@@ -42,6 +48,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell!.imageView?.image = image
         let highlightedImage = UIImage(named: "star2")
         cell!.imageView?.highlightedImage = highlightedImage
+        
+        //set cell detailTextLabel text, but default cell style has no detail label
+        if indexPath.row < 7
+        {
+            cell!.detailTextLabel?.text = "Mr Disney"
+        }
+        else
+        {
+            cell!.detailTextLabel?.text = "Mr Tolkien"
+        }
         
         //set cell title
         cell!.textLabel?.text = dwarves[indexPath.row]
