@@ -36,6 +36,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ConstansForTableView.SimpleTableIdentifier)
         }
+        
+        //Add image to table view cell
+        let image = UIImage(named: "star")
+        cell!.imageView?.image = image
+        let highlightedImage = UIImage(named: "star2")
+        cell!.imageView?.highlightedImage = highlightedImage
+        
+        //set cell title
         cell!.textLabel?.text = dwarves[indexPath.row]
         
         return cell!
