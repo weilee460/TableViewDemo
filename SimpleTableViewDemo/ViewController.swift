@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         static let SimpleTableIdentifier = "simpleTableIdentifier"
     }
     
-    //MARK: - Table View DataSource Method
+    //MARK: - Table View DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return dwarves.count
@@ -63,6 +63,43 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell!.textLabel?.text = dwarves[indexPath.row]
         
         return cell!
+    }
+    
+    
+    //MARK: - Table View Delegate
+    //Set table view row 行缩进
+    /*
+    func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+        
+        return indexPath.row % 4
+    }
+    */
+    
+    //处理用户行选择
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        if indexPath.row == 0
+        {
+            return nil
+        }
+        else
+        {
+            return indexPath
+        }
+    }
+    
+    //在某一行被选中之后调用，通常在这个委托方法，对选择的行进行实际处理
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let rowValue = dwarves[indexPath.row]
+        let message = "You selected \(rowValue)"
+        
+        let alert = UIAlertController(title: "Row Selected", message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Yes, I Did", style: .Default, handler: nil)
+        
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+        
     }
 
 
