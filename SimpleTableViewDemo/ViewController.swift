@@ -23,6 +23,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         static let SimpleTableIdentifier = "simpleTableIdentifier"
     }
     
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     //MARK: - Table View DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -62,6 +70,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //set cell title
         cell!.textLabel?.text = dwarves[indexPath.row]
         
+        //改变字体大小
+        cell!.textLabel?.font = UIFont.boldSystemFontOfSize(40)
+        
         return cell!
     }
     
@@ -100,6 +111,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
         
+    }
+    
+    //设置不同的行的不同高度
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return indexPath.row == 0 ? 110 : 60
     }
 
 
